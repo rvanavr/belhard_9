@@ -1,0 +1,44 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block title %}
+HOME
+{% endblock %}
+
+{% block image %}
+style="background-image: url('{% static 'assets/img/home-bg.jpg' %}')"
+{% endblock %}
+
+{% block heading %}
+<h1>{{ heading }}</h1>
+<span class="subheading">{{ subheading }}</span>
+{% endblock %}
+
+{% block main %}
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+
+            {% include "blog/post_list.html" %}
+
+            <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+
+            {% include "blog/form_contact.html" %}
+
+            <form method="post">
+                {% csrf_token %}
+                <label>
+                <input name="form_type" value="email_form" hidden>
+                </label>
+                <div class="form-floating">
+                    {{ my_form.email }}
+                    <label for="email">Email address</label>
+                </div>
+                <br>
+                <button class="btn btn-primary text-uppercase" type="submit">SEND</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
